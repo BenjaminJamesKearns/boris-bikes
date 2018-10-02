@@ -1,8 +1,5 @@
-Object              Message
-Person              
-Bike                Working?
-DockingStation      Release bike
-
-
-Bike -> Working? -> True/False
-DockingStation -> Release bike -> bike 
+|Object|  Message|
+|--|--|
+| Person |  |
+| Bike | Working? |
+| DockingStation | Release bike |
