@@ -5,6 +5,6 @@ A program which emulates the docking stations, bikes and infrastructure for a ne
 
 ----------------------
 
-Using Ruby
+Coding language: Ruby
 
 ----------------------
