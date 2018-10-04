@@ -33,8 +33,22 @@ describe DockingStation do
   end
   describe '#dock' do
     it 'raises an error when docking station is full' do
-      DockingStation::DEFAULT_CAPACITY.times {subject.dock(Bike.new)}
+      subject.capacity.times {subject.dock(Bike.new)}
       expect{subject.dock(Bike.new)}.to raise_error 'Docking station full'
     end
+  end
+  describe 'initialization' do 
+    it "sets a docking station capacity" do 
+      station,= DockingStation.new 25
+      25.times{station.dock Bike.new}
+      expect{station.dock Bike.new}.to raise_error 'Docking station full' 
+    end
+  let(:bike) { Bike.new }
+  it 'defaults capacity' do
+    described_class::DEFAULT_CAPACITY.times do
+      subject.dock(bike)
+    end
+    expect{ subject.dock(bike) }.to raise_error 'Docking station full'
+  end
   end
 end
