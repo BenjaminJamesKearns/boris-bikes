@@ -1,6 +1,10 @@
 class Bike
     def working?
-        true
+        if @broken == true
+            false
+        else
+            true
+        end
     end
     
     def report_broken
