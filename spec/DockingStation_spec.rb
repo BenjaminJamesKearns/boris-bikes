@@ -39,16 +39,24 @@ describe DockingStation do
   end
   describe 'initialization' do 
     it "sets a docking station capacity" do 
-      station,= DockingStation.new 25
+      station = DockingStation.new 25
       25.times{station.dock Bike.new}
       expect{station.dock Bike.new}.to raise_error 'Docking station full' 
     end
-  let(:bike) { Bike.new }
-  it 'defaults capacity' do
-    described_class::DEFAULT_CAPACITY.times do
-      subject.dock(bike)
+    let(:bike) { Bike.new }
+    it 'defaults capacity' do
+      described_class::DEFAULT_CAPACITY.times do
+        subject.dock(bike)
+      end
+      expect{ subject.dock(bike) }.to raise_error 'Docking station full'
     end
-    expect{ subject.dock(bike) }.to raise_error 'Docking station full'
   end
+  it 'releases a working bike' do
+    bike1 = Bike.new
+    bike2 = Bike.new
+    bike1.report_broken 
+    subject.dock(bike1)
+    subject.dock(bike2)
+    expect(subject.release_bike).to eq bike2
   end
 end
